@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { StationCard, type StationData } from "@/components/dashboard/StationCard";
-import { LiveTrackSimulation, type TrainData, type AISuggestion } from "@/components/simulation/LiveTrackSimulation";
+import { TrainSimulation, type TrainData, type AISuggestion } from "@/components/simulation/TrainSimulation";
 import { AIAssistant } from "@/components/ai/AIAssistant";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -270,7 +270,7 @@ const Index = () => {
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                       {sortedStations.map((station) => (
                         <StationCard
                           key={station.id}
@@ -290,7 +290,7 @@ const Index = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <LiveTrackSimulation
+                    <TrainSimulation
                       stationId={selectedStation}
                       trains={trains}
                       suggestions={suggestions}

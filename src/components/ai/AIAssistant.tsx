@@ -125,11 +125,39 @@ export function AIAssistant({ className, onSuggestionApply }: AIAssistantProps) 
   };
 
   const generateAIResponse = (userInput: string): string => {
+    const input = userInput.toLowerCase();
+    
+    // Railway-specific responses based on user input
+    if (input.includes('delay') || input.includes('late')) {
+      return "Analyzing delay patterns. Current average delay is 5.2 minutes. I recommend holding freight train DFC 321 for 3 minutes to allow Rajdhani Express priority passage.";
+    }
+    
+    if (input.includes('conflict') || input.includes('collision') || input.includes('track')) {
+      return "Track conflict detected between MGS Express (Track 3) and Goods train DFC 321 (Track 4) approaching Track 5. Recommend holding goods train for 3 minutes.";
+    }
+    
+    if (input.includes('efficiency') || input.includes('optimize') || input.includes('throughput')) {
+      return "Current system efficiency: 82%. Platform 3 utilization can be improved by 25%. Suggest rerouting next 2 local trains to Platform 4 for optimal throughput.";
+    }
+    
+    if (input.includes('status') || input.includes('system')) {
+      return "System Status: All signals operational. 24 active trains, 6 pending conflicts. Overall network health: 95%. Recommend immediate attention to Central Junction conflicts.";
+    }
+    
+    if (input.includes('predict') || input.includes('forecast')) {
+      return "Predictive analysis complete: Potential 15-minute delay for Rajdhani Express at 14:30. Weather conditions normal. Recommend clearing Track 1 immediately.";
+    }
+    
+    if (input.includes('route') || input.includes('platform')) {
+      return "Route optimization suggestion: Reroute Chennai Express to Platform 7 instead of Platform 1. This reduces waiting time by 8 minutes and improves overall station throughput.";
+    }
+    
+    // Default responses for railway operations
     const responses = [
-      "Analyzing current traffic patterns. Based on the data, I recommend prioritizing express trains during peak hours.",
-      "Current system efficiency is at 82%. I've identified 3 optimization opportunities for your consideration.",
-      "Station congestion detected at Platform 2. Suggest rerouting next 2 local trains to Platform 4.",
-      "Predictive analysis shows potential 15-minute delay for Rajdhani Express. Recommend clearing Track 1 immediately."
+      "Analyzing current traffic patterns. Based on historical data, I recommend prioritizing express trains during peak hours to maintain punctuality.",
+      "Station congestion analysis complete. Platform 2 showing 85% utilization. Suggest rerouting next local train to Platform 4 for load balancing.",
+      "Real-time monitoring active. All safety systems operational. Current network efficiency: 82% with 3 optimization opportunities identified.",
+      "Traffic flow analysis: Express trains have 12% priority advantage. Recommend maintaining current freight scheduling to avoid passenger delays."
     ];
     return responses[Math.floor(Math.random() * responses.length)];
   };

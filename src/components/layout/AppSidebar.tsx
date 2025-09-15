@@ -29,11 +29,10 @@ import { cn } from "@/lib/utils";
 
 const navigationItems = [
   { title: "Control Dashboard", url: "/", icon: Activity },
-  { title: "Station Overview", url: "/stations", icon: Map },
-  { title: "Train Tracking", url: "/tracking", icon: Train },
+  { title: "Train Tracking", url: "/train-tracking", icon: Train },
+  { title: "Station Overview", url: "/station/stn001", icon: Map },
   { title: "AI Assistant", url: "/ai-assistant", icon: Bot },
   { title: "Analytics & KPI", url: "/analytics", icon: BarChart3 },
-  { title: "Live Monitoring", url: "/monitoring", icon: Radio },
 ];
 
 const systemItems = [
