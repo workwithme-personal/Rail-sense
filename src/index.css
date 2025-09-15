@@ -2,95 +2,155 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Railway Traffic Control Design System - All colors MUST be HSL */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Railway Terminal Inspired */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
 
+    /* Card Colors */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 215 25% 15%;
 
+    /* Popover Colors */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 215 25% 15%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Railway Primary - Deep Railway Blue */
+    --primary: 217 91% 35%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 217 91% 60%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Railway Secondary - Steel Gray */
+    --secondary: 215 15% 92%;
+    --secondary-foreground: 215 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Railway Muted - Light Steel */
+    --muted: 215 20% 95%;
+    --muted-foreground: 215 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Railway Accent - Signal Orange */
+    --accent: 25 95% 58%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Status Colors */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 0 0% 15%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Railway Traffic Priority Colors */
+    --traffic-high: 0 84% 60%;      /* Critical - Red */
+    --traffic-medium: 43 96% 56%;   /* Medium - Amber */
+    --traffic-normal: 142 71% 45%;  /* Normal - Green */
+    --traffic-maintenance: 258 90% 66%; /* Maintenance - Purple */
 
-    --radius: 0.5rem;
+    /* Train Type Colors */
+    --train-passenger: 217 91% 35%;  /* Passenger - Blue */
+    --train-freight: 25 95% 45%;     /* Freight - Orange */
+    --train-express: 271 81% 56%;    /* Express - Purple */
+    --train-local: 142 71% 45%;      /* Local - Green */
 
-    --sidebar-background: 0 0% 98%;
+    /* Track Colors */
+    --track-main: 215 25% 35%;       /* Main Track - Dark Gray */
+    --track-loop: 215 15% 55%;       /* Loop Track - Light Gray */
+    --track-siding: 25 95% 45%;      /* Siding - Orange */
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Border and Input */
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 217 91% 35%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Border Radius */
+    --radius: 0.75rem;
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Railway Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-traffic: linear-gradient(135deg, hsl(var(--traffic-high)), hsl(var(--warning)));
+    --gradient-surface: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
 
-    --sidebar-accent: 240 4.8% 95.9%;
+    /* Shadows */
+    --shadow-railway: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+    --shadow-elevated: 0 20px 40px -15px hsl(215 25% 15% / 0.15);
 
-    --sidebar-accent-foreground: 240 5.9% 10%;
+    /* Sidebar Colors - Railway Control Room */
+    --sidebar-background: 215 25% 12%;
+    --sidebar-foreground: 215 15% 85%;
+    --sidebar-primary: 217 91% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 215 25% 18%;
+    --sidebar-accent-foreground: 215 15% 85%;
+    --sidebar-border: 215 25% 20%;
+    --sidebar-ring: 217 91% 60%;
 
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 215 25% 12%;
+    --foreground: 215 15% 85%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 215 25% 15%;
+    --card-foreground: 215 15% 85%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 215 25% 15%;
+    --popover-foreground: 215 15% 85%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 215 25% 12%;
+    --primary-glow: 217 91% 70%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 215 25% 20%;
+    --secondary-foreground: 215 15% 85%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 215 25% 18%;
+    --muted-foreground: 215 15% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 25 95% 65%;
+    --accent-foreground: 215 25% 12%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 215 15% 85%;
+    --success: 142 71% 55%;
+    --success-foreground: 215 25% 12%;
+    --warning: 43 96% 65%;
+    --warning-foreground: 215 25% 12%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Railway Traffic Priority Colors - Dark Mode */
+    --traffic-high: 0 84% 65%;
+    --traffic-medium: 43 96% 65%;
+    --traffic-normal: 142 71% 55%;
+    --traffic-maintenance: 258 90% 70%;
+
+    /* Train Type Colors - Dark Mode */
+    --train-passenger: 217 91% 60%;
+    --train-freight: 25 95% 55%;
+    --train-express: 271 81% 65%;
+    --train-local: 142 71% 55%;
+
+    /* Track Colors - Dark Mode */
+    --track-main: 215 15% 65%;
+    --track-loop: 215 15% 45%;
+    --track-siding: 25 95% 55%;
+
+    --border: 215 25% 20%;
+    --input: 215 25% 20%;
+    --ring: 217 91% 60%;
+
+    --sidebar-background: 215 28% 8%;
+    --sidebar-foreground: 215 15% 75%;
+    --sidebar-primary: 217 91% 60%;
+    --sidebar-primary-foreground: 215 25% 12%;
+    --sidebar-accent: 215 25% 12%;
+    --sidebar-accent-foreground: 215 15% 85%;
+    --sidebar-border: 215 25% 15%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -101,5 +161,101 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      radial-gradient(circle at 25% 25%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 75% 75%, hsl(var(--accent) / 0.05) 0%, transparent 50%);
+  }
+
+  /* Custom Railway-themed animations and effects */
+  @keyframes railway-pulse {
+    0%, 100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 hsl(var(--primary) / 0.4);
+    }
+    50% { 
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px hsl(var(--primary) / 0);
+    }
+  }
+
+  @keyframes signal-glow {
+    0%, 100% { 
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.8), 0 0 30px hsl(var(--primary) / 0.4);
+    }
+  }
+
+  @keyframes track-shimmer {
+    0% { 
+      background-position: -200% 0;
+    }
+    100% { 
+      background-position: 200% 0;
+    }
+  }
+
+  /* Railway Control Panel Styles */
+  .railway-panel {
+    background: linear-gradient(135deg, 
+      hsl(var(--card)) 0%, 
+      hsl(var(--card) / 0.8) 100%);
+    border: 1px solid hsl(var(--border));
+    backdrop-filter: blur(10px);
+  }
+
+  .train-indicator {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .train-indicator::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent 0%, 
+      hsl(var(--primary) / 0.2) 50%, 
+      transparent 100%);
+    animation: track-shimmer 2s infinite;
+  }
+
+  .signal-light {
+    animation: signal-glow 3s ease-in-out infinite;
+  }
+
+  .priority-indicator {
+    animation: railway-pulse 2s ease-in-out infinite;
+  }
+
+  /* Scrollbar Styling */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.5);
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground) / 0.8);
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary-foreground));
   }
 }
