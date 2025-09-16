@@ -59,8 +59,20 @@ interface StationOverviewData {
 }
 
 interface StationOverviewProps {
-  stationId: string;
+  stationId?: string;
   className?: string;
+}
+
+interface Station {
+  id: string;
+  name: string;
+  code: string;
+  location: string;
+  trafficLevel: 'high' | 'medium' | 'normal';
+  platforms: number;
+  activeTrains: number;
+  conflicts: number;
+  efficiency: number;
 }
 
 const mockStationData: StationOverviewData = {
@@ -102,12 +114,96 @@ const trafficLevelConfig = {
   normal: { color: 'traffic-normal', label: 'Normal Traffic', variant: 'secondary' as const },
 };
 
+const mockStations: Station[] = [
+  { id: 'stn001', name: 'Central Junction', code: 'CJN', location: 'New Delhi', trafficLevel: 'high', platforms: 8, activeTrains: 12, conflicts: 2, efficiency: 78 },
+  { id: 'stn002', name: 'Metro Hub', code: 'MHB', location: 'Mumbai', trafficLevel: 'medium', platforms: 6, activeTrains: 8, conflicts: 1, efficiency: 85 },
+  { id: 'stn003', name: 'Express Terminal', code: 'EXT', location: 'Bangalore', trafficLevel: 'high', platforms: 10, activeTrains: 15, conflicts: 3, efficiency: 72 },
+  { id: 'stn004', name: 'Freight Hub', code: 'FHB', location: 'Chennai', trafficLevel: 'medium', platforms: 5, activeTrains: 6, conflicts: 0, efficiency: 92 },
+  { id: 'stn005', name: 'Regional Station', code: 'RST', location: 'Hyderabad', trafficLevel: 'normal', platforms: 4, activeTrains: 4, conflicts: 0, efficiency: 88 },
+];
+
 export function StationOverview({ stationId, className }: StationOverviewProps) {
+  const [selectedStation, setSelectedStation] = useState<string | null>(stationId || null);
   const [station] = useState<StationOverviewData>(mockStationData);
+
+  if (!selectedStation) {
+    // Show station list
+    return (
+      <div className={cn("space-y-6", className)}>
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-bold">Station Management</h1>
+          <Badge variant="outline" className="text-sm">
+            {mockStations.length} Stations Under Control
+          </Badge>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {mockStations.map((stn) => {
+            const config = trafficLevelConfig[stn.trafficLevel];
+            return (
+              <motion.div
+                key={stn.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.02 }}
+              >
+                <Card 
+                  className="cursor-pointer hover:shadow-lg transition-all duration-200"
+                  onClick={() => setSelectedStation(stn.id)}
+                >
+                  <CardHeader className="pb-3">
+                    <div className="flex items-start justify-between">
+                      <div>
+                        <h3 className="font-semibold text-lg">{stn.name}</h3>
+                        <p className="text-sm text-muted-foreground">{stn.code} • {stn.location}</p>
+                      </div>
+                      <Badge variant={config.variant} className="text-xs">
+                        {config.label}
+                      </Badge>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-2 gap-4 text-sm">
+                      <div>
+                        <span className="text-muted-foreground">Platforms:</span>
+                        <p className="font-medium">{stn.platforms}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Active Trains:</span>
+                        <p className="font-medium">{stn.activeTrains}</p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Conflicts:</span>
+                        <p className={cn("font-medium", stn.conflicts > 0 ? "text-destructive" : "text-success")}>
+                          {stn.conflicts}
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground">Efficiency:</span>
+                        <p className="font-medium">{stn.efficiency}%</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
+    );
+  }
+
   const config = trafficLevelConfig[station.trafficLevel];
 
   return (
     <div className={cn("space-y-6", className)}>
+      <Button 
+        variant="outline" 
+        onClick={() => setSelectedStation(null)}
+        className="mb-4"
+      >
+        ← Back to Station List
+      </Button>
       {/* Station Header */}
       <Card>
         <CardHeader>
