@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/layout/AppSidebar";
 import { StationCard, type StationData } from "@/components/dashboard/StationCard";
-import { TrainSimulation, type TrainData, type AISuggestion } from "@/components/simulation/TrainSimulation";
+import { RealisticTrainSimulation, type RealisticTrainData, type RealisticAISuggestion } from "@/components/simulation/RealisticTrainSimulation";
 import { AIAssistant } from "@/components/ai/AIAssistant";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -75,7 +75,7 @@ const mockStations: StationData[] = [
   }
 ];
 
-const mockTrains: TrainData[] = [
+const mockTrains: RealisticTrainData[] = [
   {
     id: "trn001",
     name: "MGS EXP",
@@ -86,7 +86,8 @@ const mockTrains: TrainData[] = [
     priority: 9,
     position: 35,
     delay: 5,
-    status: "moving"
+    status: "moving",
+    route: [3, 5]
   },
   {
     id: "trn002", 
@@ -98,7 +99,8 @@ const mockTrains: TrainData[] = [
     priority: 3,
     position: 40,
     delay: 0,
-    status: "conflict"
+    status: "conflict",
+    route: [4, 5]
   },
   {
     id: "trn003",
@@ -110,34 +112,38 @@ const mockTrains: TrainData[] = [
     priority: 10,
     position: 65,
     delay: 3,
-    status: "moving"
+    status: "moving",
+    route: [2, 1]
   }
 ];
 
-const mockSuggestions: AISuggestion[] = [
+const mockSuggestions: RealisticAISuggestion[] = [
   {
     id: "sug001",
     type: "hold", 
     trainId: "trn002",
+    affectedTrainId: "trn001",
     message: "Hold DFC 321 (freight) for 3 minutes to allow MGS Express to proceed first. This will reduce overall passenger delay by 8 minutes.",
     duration: 3,
-    priority: "high"
+    priority: "high",
+    scenario: "track_conflict"
   },
   {
     id: "sug002",
     type: "reroute",
-    trainId: "trn003", 
+    trainId: "trn003",
     message: "Reroute RAJ Express to Platform 2 instead of Platform 1 to optimize platform utilization.",
     alternativeTrack: 2,
-    priority: "medium"
+    priority: "medium",
+    scenario: "platform_conflict"
   }
 ];
 
 const Index = () => {
   const [selectedStation, setSelectedStation] = useState<string | null>(null);
   const [stations] = useState<StationData[]>(mockStations);
-  const [trains] = useState<TrainData[]>(mockTrains);
-  const [suggestions, setSuggestions] = useState<AISuggestion[]>(mockSuggestions);
+  const [trains] = useState<RealisticTrainData[]>(mockTrains);
+  const [suggestions, setSuggestions] = useState<RealisticAISuggestion[]>(mockSuggestions);
   const [systemMetrics, setSystemMetrics] = useState({
     totalTrains: 24,
     activeConflicts: 6,
@@ -290,10 +296,8 @@ const Index = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <TrainSimulation
+                    <RealisticTrainSimulation
                       stationId={selectedStation}
-                      trains={trains}
-                      suggestions={suggestions}
                       onAcceptSuggestion={handleAcceptSuggestion}
                       onRejectSuggestion={handleRejectSuggestion}
                     />

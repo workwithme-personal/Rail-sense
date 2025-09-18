@@ -139,7 +139,41 @@
     --track-loop: 215 15% 45%;
     --track-siding: 25 95% 55%;
 
-    --border: 215 25% 20%;
+    /* Responsive adjustments */
+    --container-padding: 1rem;
+  }
+
+  /* Mobile Responsive Utilities */
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .grid-responsive {
+      grid-template-columns: 1fr;
+    }
+    
+    .text-responsive-lg {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+    }
+    
+    .text-responsive-xl {
+      font-size: 1.5rem;
+      line-height: 2rem;
+    }
+    
+    .p-responsive {
+      padding: 1rem;
+    }
+    
+    .gap-responsive {
+      gap: 1rem;
+    }
+  }
+
+  .dark {
     --input: 215 25% 20%;
     --ring: 217 91% 60%;
 
