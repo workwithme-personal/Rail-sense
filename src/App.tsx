@@ -4,7 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import LandingPage from "./pages/LandingPage";
+import LoginPage from "./pages/LoginPage";
 import Index from "./pages/Index";
 import Analytics from "./pages/Analytics";
 import Training from "./pages/Training";
@@ -15,6 +15,7 @@ import TeamManagement from "./pages/TeamManagement";
 import AlertsWarnings from "./pages/AlertsWarnings";
 import SystemSettings from "./pages/SystemSettings";
 import StationMasterDashboard from "./pages/StationMasterDashboard";
+import ChiefControllerDashboard from "./pages/ChiefControllerDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,7 +32,7 @@ const App = () => {
           <Toaster />
           <Sonner />
           <BrowserRouter>
-            <LandingPage onLogin={(role) => {
+            <LoginPage onLogin={(role) => {
               setUserRole(role);
               setIsAuthenticated(true);
             }} />
@@ -49,6 +50,22 @@ const App = () => {
         <Sonner />
         <BrowserRouter>
           <Routes>
+            {/* Chief Controller Routes */}
+            {userRole === 'chief_controller' && (
+              <>
+                <Route path="/" element={<ChiefControllerDashboard />} />
+                <Route path="/sections" element={<Index />} />
+                <Route path="/analytics" element={<Analytics />} />
+                <Route path="/train-tracking" element={<TrainTracking />} />
+                <Route path="/station/:stationId" element={<StationOverview />} />
+                <Route path="/ai-assistant" element={<AIAssistant />} />
+                <Route path="/training" element={<Training />} />
+                <Route path="/team" element={<TeamManagement />} />  
+                <Route path="/alerts" element={<AlertsWarnings />} />
+                <Route path="/settings" element={<SystemSettings />} />
+              </>
+            )}
+
             {/* Section Controller Routes */}
             {userRole === 'section_controller' && (
               <>
@@ -75,10 +92,10 @@ const App = () => {
               </>
             )}
             
-            {/* Admin Routes */}
+            {/* Admin Routes (keeping for backward compatibility) */}
             {userRole === 'admin' && (
               <>
-                <Route path="/" element={<Index />} />
+                <Route path="/" element={<ChiefControllerDashboard />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/train-tracking" element={<TrainTracking />} />
                 <Route path="/station/:stationId" element={<StationOverview />} />

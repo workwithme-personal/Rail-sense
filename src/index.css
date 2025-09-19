@@ -171,6 +171,80 @@
     .gap-responsive {
       gap: 1rem;
     }
+    
+    /* Enhanced mobile responsive styles */
+    .sidebar {
+      width: 100% !important;
+    }
+    
+    .main-content {
+      width: 100% !important;
+    }
+    
+    /* Grid system responsive overrides */
+    .grid.grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .grid.lg\\:grid-cols-2 {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .grid.lg\\:grid-cols-3 {
+      grid-template-columns: 1fr !important;
+    }
+    
+    .grid.lg\\:grid-cols-4 {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
+    
+    /* Text size responsive */
+    .text-2xl {
+      font-size: 1.25rem !important;
+      line-height: 1.75rem !important;
+    }
+    
+    .text-xl {
+      font-size: 1.125rem !important;
+      line-height: 1.75rem !important;
+    }
+    
+    /* Padding responsive */
+    .p-6 {
+      padding: 1rem !important;
+    }
+    
+    .px-6 {
+      padding-left: 1rem !important;
+      padding-right: 1rem !important;
+    }
+    
+    /* Gap responsive */
+    .gap-6 {
+      gap: 1rem !important;
+    }
+    
+    .space-y-6 > * + * {
+      margin-top: 1rem !important;
+    }
+    
+    /* Card responsive */
+    .card {
+      margin-bottom: 1rem;
+    }
+    
+    /* Hide complex elements on mobile */
+    .hidden.sm\\:block {
+      display: none !important;
+    }
+    
+    .hidden.sm\\:flex {
+      display: none !important;
+    }
+    
+    .hidden.sm\\:inline {
+      display: none !important;
+    }
   }
 
   .dark {

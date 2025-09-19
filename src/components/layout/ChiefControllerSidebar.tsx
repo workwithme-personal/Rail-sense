@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { 
-  MapPin, 
+  Shield, 
   Activity, 
-  Train, 
   BarChart3, 
   Users, 
   Settings, 
   BookOpen, 
   AlertTriangle,
-  Calendar,
+  MapPin,
   Radio,
-  Zap
+  Zap,
+  Globe,
+  TrendingUp,
+  User
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
@@ -27,21 +29,23 @@ import {
 import { cn } from "@/lib/utils";
 
 const navigationItems = [
-  { title: "Station Overview", url: "/", icon: Activity },
-  { title: "Train Schedule", url: "/schedule", icon: Calendar },
-  { title: "Platform Management", url: "/platforms", icon: MapPin },
+  { title: "Division Overview", url: "/", icon: Activity },
+  { title: "Section Controllers", url: "/sections", icon: Users },
+  { title: "Traffic Flow", url: "/traffic", icon: TrendingUp },
+  { title: "Inter-Division Coord", url: "/coordination", icon: Globe },
+  { title: "Priority Management", url: "/priorities", icon: Zap },
   { title: "Analytics & Reports", url: "/analytics", icon: BarChart3 },
 ];
 
 const systemItems = [
   { title: "AI Assistant", url: "/ai-assistant", icon: Radio },
   { title: "Alerts & Warnings", url: "/alerts", icon: AlertTriangle },
-  { title: "Learning Center", url: "/training", icon: BookOpen },
-  { title: "Profile", url: "/profile", icon: Users },
-  { title: "Settings", url: "/settings", icon: Settings },
+  { title: "Training Center", url: "/training", icon: BookOpen },
+  { title: "Profile", url: "/profile", icon: User },
+  { title: "System Settings", url: "/settings", icon: Settings },
 ];
 
-export function StationMasterSidebar() {
+export function ChiefControllerSidebar() {
   const { state } = useSidebar();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -63,15 +67,15 @@ export function StationMasterSidebar() {
         <div className="p-4 border-b border-sidebar-border">
           <div className="flex items-center gap-3">
             <div className="h-8 w-8 rounded-lg bg-primary flex items-center justify-center">
-              <MapPin className="h-5 w-5 text-primary-foreground" />
+              <Shield className="h-5 w-5 text-primary-foreground" />
             </div>
             {!isCollapsed && (
               <div>
                 <h2 className="text-sm font-semibold text-sidebar-foreground">
-                  Station Master
+                  Chief Controller
                 </h2>
                 <p className="text-xs text-sidebar-foreground/70">
-                  Platform Control System
+                  Divisional Control Office
                 </p>
               </div>
             )}
@@ -81,7 +85,7 @@ export function StationMasterSidebar() {
         {/* Main Navigation */}
         <SidebarGroup>
           <SidebarGroupLabel className="text-sidebar-foreground/80">
-            Station Operations
+            Division Control
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -126,23 +130,30 @@ export function StationMasterSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        {/* AI Assistant Quick Access */}
+        {/* Quick Stats */}
         {!isCollapsed && (
           <div className="mt-auto p-4 border-t border-sidebar-border">
             <div className="bg-primary/10 rounded-lg p-3 border border-primary/20">
               <div className="flex items-center gap-2 mb-2">
-                <Zap className="h-4 w-4 text-primary" />
+                <MapPin className="h-4 w-4 text-primary" />
                 <span className="text-sm font-medium text-sidebar-foreground">
-                  Smart Assistance
+                  Division Stats
                 </span>
               </div>
-              <p className="text-xs text-sidebar-foreground/70 mb-3">
-                Get AI-powered recommendations for platform optimization and train scheduling.
-              </p>
-              <button className="inline-flex items-center gap-1 text-xs text-primary hover:text-primary-glow transition-colors">
-                <Train className="h-3 w-3" />
-                Ask Station AI
-              </button>
+              <div className="space-y-1 text-xs text-sidebar-foreground/70">
+                <div className="flex justify-between">
+                  <span>Active Trains:</span>
+                  <span className="font-medium">847</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>On-Time Performance:</span>
+                  <span className="font-medium text-success">94.2%</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Controllers Online:</span>
+                  <span className="font-medium">24/24</span>
+                </div>
+              </div>
             </div>
           </div>
         )}

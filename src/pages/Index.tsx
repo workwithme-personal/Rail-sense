@@ -178,7 +178,7 @@ const Index = () => {
         
         <main className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="h-16 border-b border-border bg-card px-6 flex items-center justify-between">
+          <header className="h-16 border-b border-border bg-card px-4 sm:px-6 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <SidebarTrigger />
               <div>

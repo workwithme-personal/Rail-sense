@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Button } from "@/components/ui/button";
 import { StationMasterSidebar } from "@/components/layout/StationMasterSidebar";
 import { StationVisualization } from "@/components/station/StationVisualization";
 import { TrainSchedule } from "@/components/station/TrainSchedule";
 import { PlatformStatus } from "@/components/station/PlatformStatus";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { LogOut } from "lucide-react";
 import { 
   Activity, 
   Train, 
