@@ -16,6 +16,10 @@ import AlertsWarnings from "./pages/AlertsWarnings";
 import SystemSettings from "./pages/SystemSettings";
 import StationMasterDashboard from "./pages/StationMasterDashboard";
 import ChiefControllerDashboard from "./pages/ChiefControllerDashboard";
+import SectionControllers from "./pages/SectionControllers";
+import TrafficFlow from "./pages/TrafficFlow";
+import InterDivisionCoordination from "./pages/InterDivisionCoordination";
+import PriorityManagement from "./pages/PriorityManagement";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -54,7 +58,10 @@ const App = () => {
             {userRole === 'chief_controller' && (
               <>
                 <Route path="/" element={<ChiefControllerDashboard />} />
-                <Route path="/sections" element={<Index />} />
+                <Route path="/sections" element={<SectionControllers />} />
+                <Route path="/traffic" element={<TrafficFlow />} />
+                <Route path="/coordination" element={<InterDivisionCoordination />} />
+                <Route path="/priorities" element={<PriorityManagement />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/train-tracking" element={<TrainTracking />} />
                 <Route path="/station/:stationId" element={<StationOverview />} />

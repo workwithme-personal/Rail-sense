@@ -198,6 +198,10 @@ const StationMasterDashboard = () => {
               <div className="text-xs md:text-sm text-muted-foreground hidden sm:block">
                 Last sync: {stationData.lastUpdate}
               </div>
+              <Button variant="outline" size="sm" onClick={() => window.location.reload()}>
+                <LogOut className="h-4 w-4 mr-1" />
+                <span className="hidden sm:inline">Logout</span>
+              </Button>
             </div>
           </header>
 
